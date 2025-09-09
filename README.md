@@ -1,69 +1,63 @@
-# React + TypeScript + Vite
+# 🎮 TaskQuest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Gamified Task Manager — список задач в формате игры.  
+Выполняй задачи → получай очки опыта → прокачивай уровень персонажа!
 
-Currently, two official plugins are available:
+## 🚀 Стек технологий
+- [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/) — сборка и dev-сервер
+- [Redux Toolkit](https://redux-toolkit.js.org/) — управление состоянием
+- [TailwindCSS](https://tailwindcss.com/) — стилизация интерфейса
+- LocalStorage — сохранение данных пользователя
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Функционал
+- ✅ Добавление, редактирование и удаление задач
+- ✅ Прогресс-бар выполнения задач
+- ✅ Персонаж с уровнями (XP за выполненные задачи)
+- ✅ Система достижений *(например, 10 задач подряд)*
+- ✅ Сохранение всех данных в LocalStorage
 
-## Expanding the ESLint configuration
+*(В планах)*
+- 🎯 Ежедневные квесты
+- 🛒 Магазин с кастомизацией персонажа
+- 📊 Статистика по выполнению задач
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📂 Структура проекта
+```
+src/
+├─ assets/ # иконки, картинки
+├─ components/ # переиспользуемые UI-компоненты
+├─ features/ # Redux-slices (tasks, user, achievements)
+├─ pages/ # страницы приложения (Home, Profile, Achievements)
+├─ store/ # конфигурация Redux
+├─ App.tsx # корневой компонент
+└─ main.tsx # точка входа
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Установка и запуск
+```bash
+# 1. Клонировать репозиторий
+git clone https://github.com/username/taskquest.git
+cd taskquest
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 2. Установить зависимости
+npm install
+
+# 3. Запуск dev-сервера
+npm run dev
+
+# 4. Сборка для продакшена
+npm run build
 ```
+
+## 🛠️ Использование
+
+Добавь задачу через форму
+
+Отметь её как выполненную → получи XP
+
+Следи за прогрессом персонажа и открывай достижения
+
+## 👩‍💻 Автор
+Салимова Рузиля — [Telegram: @Ruzya0_0](https://t.me/Ruzya0_0)
