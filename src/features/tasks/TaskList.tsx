@@ -25,7 +25,7 @@ export const TaskList = () => {
     }
 
     return (
-        <div className="mt-4 flex flex-col gap-2 w-full max-w-lg">
+        <div className="flex flex-col gap-4 mt-4">
             {tasks.map(task => (
                 <div
                     key={task.id}
@@ -59,9 +59,9 @@ export const TaskList = () => {
                             </div>
                         </>
                     ) : (
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between p-4 bg-white/90 rounded-lg shadow-sm hover:shadow-md transition border border-gray-200">
                             <div>
-                                <h3 className={`font-semibold ${task.completed ? "line-through text-gray-400" : ""}`}>
+                                <h3 className={`font-semibold text-lg ${task.completed ? "line-through text-gray-400" : "text-gray-800"}`}>
                                     {task.title}
                                 </h3>
                                 {task.description && <p className="text-sm text-gray-500">{task.description}</p>}
@@ -74,19 +74,21 @@ export const TaskList = () => {
                                             dispatch(addXp(XP_PER_TASK))
                                         }
                                     }}
-                                    className="px-3 py-1 bg-green-500 text-white rounded"
+                                    className={`px-3 py-1 rounded font-medium transition ${
+                                        task.completed ? "bg-gray-400 text-white" : "bg-green-500 hover:bg-green-600 text-white"
+                                    }`}
                                 >
                                     {task.completed ? "↩️" : "✔️"}
                                 </button>
                                 <button
                                     onClick={() => handleEdit(task.id, task.title, task.description)}
-                                    className="px-3 py-1 bg-yellow-500 text-white rounded"
+                                    className="px-3 py-1 bg-yellow-500 hover:bg-yellow-600 text-white rounded transition"
                                 >
                                     ✏️
                                 </button>
                                 <button
                                     onClick={() => dispatch(removeTask({ id: task.id }))}
-                                    className="px-3 py-1 bg-red-500 text-white rounded"
+                                    className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded transition"
                                 >
                                     🗑️
                                 </button>

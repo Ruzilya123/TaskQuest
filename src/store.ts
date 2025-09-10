@@ -12,6 +12,7 @@ export const store = configureStore({
 store.subscribe(() => {
     localStorage.setItem("tasks", JSON.stringify(store.getState().tasks.list));
     localStorage.setItem("character", JSON.stringify(store.getState().character));
+    localStorage.setItem("avatar", JSON.stringify(store.getState().character.avatar));
 })
 
 export type RootState = ReturnType<typeof store.getState>

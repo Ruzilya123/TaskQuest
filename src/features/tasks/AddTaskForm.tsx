@@ -17,23 +17,23 @@ export const AddTaskForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2 p-4 bg-white shadow rounded-xl">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3 p-4 bg-white shadow-md rounded-xl hover:shadow-lg transition">
             <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Название задачи"
-                className="border p-2 rounded"
+                className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
             <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Описание задачи (опционально)"
-                className="border p-2 rounded"
+                placeholder="Описание (необязательно)"
+                className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
             <button
                 type="submit"
-                className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg"
+                className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition"
             >
                 ➕ Добавить задачу
             </button>

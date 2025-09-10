@@ -1,20 +1,42 @@
-import { AddTaskForm } from "./features/tasks/AddTaskForm.tsx";
-import { TaskList } from "./features/tasks/TaskList.tsx";
-import { CharacterCard } from "./features/character/CharacterCard.tsx";
-import './App.css'
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import { AddTaskForm } from "./features/tasks/AddTaskForm";
+import { TaskList } from "./features/tasks/TaskList";
+import { CharacterCard } from "./features/character/CharacterCard";
+import { Layout } from "./components/Layout.tsx";
+import { PageTransition } from "./components/PageTransition.tsx";
 
-function App() {
-  return (
-      <div className="min-h-screen flex flex-col items-center p-6 bg-gradient-to-br from-purple-200 to-pink-200">
-          <h1 className="text-3xl font-bold mb-4">🎮 TaskQuest</h1>
-          <CharacterCard />
+export default function App() {
+    return (
+        <BrowserRouter>
+            <Layout>
+                <nav className="flex gap-4 p-4 bg-white/80 shadow rounded-lg mb-6 justify-center">
+                    <Link to="/" className="text-purple-600 font-medium hover:underline">📋 Задачи</Link>
+                    <Link to="/character" className="text-purple-600 font-medium hover:underline">🧙 Персонаж</Link>
+                    <Link to="/achievements" className="text-purple-600 font-medium hover:underline">🏆 Достижения</Link>
+                </nav>
 
-          <div className="mt-6 w-full max-w-md">
-              <AddTaskForm />
-              <TaskList />
-          </div>
-      </div>
-  )
+                <AnimatePresence mode="wait">
+                    <Routes>
+                        <Route path="/" element={
+                            <PageTransition>
+                                <AddTaskForm />
+                                <TaskList />
+                            </PageTransition>
+                        } />
+                        <Route path="/character" element={
+                            <PageTransition>
+                                <CharacterCard />
+                            </PageTransition>
+                        } />
+                        <Route path="/achievements" element={
+                            <PageTransition>
+                                <div className="p-6 bg-white rounded-xl shadow text-center">🏆 Тут будут достижения</div>
+                            </PageTransition>
+                        } />
+                    </Routes>
+                </AnimatePresence>
+            </Layout>
+        </BrowserRouter>
+    )
 }
-
-export default App
