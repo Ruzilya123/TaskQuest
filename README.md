@@ -29,7 +29,7 @@ src/
 ├─ components/ # переиспользуемые UI-компоненты
 ├─ features/ # Redux-slices (tasks, user, achievements)
 ├─ pages/ # страницы приложения (Home, Profile, Achievements)
-├─ store/ # конфигурация Redux
+├─ store.ts # конфигурация Redux
 ├─ App.tsx # корневой компонент
 └─ main.tsx # точка входа
 ```

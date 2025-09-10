@@ -1,7 +1,11 @@
 import './App.css'
 
 function App() {
-  return (<div>hello!</div>)
+  return (
+      <div className="text-3xl font-bold underline">
+        hello!
+      </div>
+  )
 }
 
 export default App
