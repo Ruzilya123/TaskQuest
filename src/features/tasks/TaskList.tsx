@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks.ts";
 import { editTask, removeTask, toggleTask } from "./tasksSlice.ts";
 import type { RootState } from "../../store.ts";
+import { addXp, XP_PER_TASK } from "../character/characterSlice.ts";
 
 export const TaskList = () => {
     const tasks = useAppSelector((state: RootState) => state.tasks.list)
@@ -67,7 +68,12 @@ export const TaskList = () => {
                             </div>
                             <div className="flex gap-2">
                                 <button
-                                    onClick={() => dispatch(toggleTask({ id: task.id }))}
+                                    onClick={() => {
+                                        dispatch(toggleTask(task.id))
+                                        if (!task.completed) {
+                                            dispatch(addXp(XP_PER_TASK))
+                                        }
+                                    }}
                                     className="px-3 py-1 bg-green-500 text-white rounded"
                                 >
                                     {task.completed ? "↩️" : "✔️"}

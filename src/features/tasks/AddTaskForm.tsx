@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { type FormEvent, useState } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { addTask } from './tasksSlice';
 
@@ -7,7 +7,7 @@ export const AddTaskForm = () => {
     const [description, setDescription] = useState('');
     const dispatch = useAppDispatch();
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         if (title.trim()) {
             dispatch(addTask({ title, description }));
