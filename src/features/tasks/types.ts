@@ -3,6 +3,6 @@ export interface Task {
     title: string
     description?: string
     completed: boolean
+    xpAwarded?: boolean // true если за это задание уже давали XP
     createdAt: number
 }
-

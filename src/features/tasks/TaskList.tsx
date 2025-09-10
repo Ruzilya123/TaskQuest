@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks.ts";
-import { editTask, removeTask, toggleTask } from "./tasksSlice.ts";
-import type { RootState } from "../../store.ts";
+import {editTask, markXpAwarded, removeTask, toggleTask} from "./tasksSlice.ts";
 import { addXp, XP_PER_TASK } from "../character/characterSlice.ts";
+import { unlockAchievement } from "../achievements/achievementsSlice.ts";
+import { addCompletion } from "../stats/statsSlice.ts";
+import type { RootState } from "../../store.ts";
+import type { Task } from "./types.ts";
 
 export const TaskList = () => {
     const tasks = useAppSelector((state: RootState) => state.tasks.list)
@@ -22,6 +25,25 @@ export const TaskList = () => {
         if (!editTitle.trim()) return;
         dispatch(editTask({ id, title: editTitle, description: editDescription }));
         setEditingTaskId(null);
+    }
+
+    const handleTaskCompletion = (task: Task) => {
+        if (!task.completed) {
+            if (!task.xpAwarded) {
+                dispatch(addXp(XP_PER_TASK))
+                dispatch(markXpAwarded(task.id))
+                dispatch(addCompletion())
+            }
+
+            // проверка на ачивки
+            if (tasks.filter(t => t.completed).length + 1 === 1) {
+                dispatch(unlockAchievement("first_task"))
+            }
+            if (tasks.filter(t => t.completed).length + 1 === 10) {
+                dispatch(unlockAchievement("ten_tasks"))
+            }
+        }
+        dispatch(toggleTask(task.id))
     }
 
     return (
@@ -68,12 +90,7 @@ export const TaskList = () => {
                             </div>
                             <div className="flex gap-2">
                                 <button
-                                    onClick={() => {
-                                        dispatch(toggleTask(task.id))
-                                        if (!task.completed) {
-                                            dispatch(addXp(XP_PER_TASK))
-                                        }
-                                    }}
+                                    onClick={() => handleTaskCompletion(task)}
                                     className={`px-3 py-1 rounded font-medium transition ${
                                         task.completed ? "bg-gray-400 text-white" : "bg-green-500 hover:bg-green-600 text-white"
                                     }`}

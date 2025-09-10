@@ -38,9 +38,19 @@ const taskSlice = createSlice({
             if (task) {
                 task.completed = !task.completed
             }
+        },
+        markXpAwarded: (state, action: PayloadAction<string>) => {
+            const t = state.list.find(x => x.id === action.payload)
+            if (t) t.xpAwarded = true
+            localStorage.setItem("tasks", JSON.stringify(state.list))
+        },
+        // (опционально) resetTasks для тестов
+        resetTasks: () => {
+            localStorage.removeItem("tasks")
+            return { list: [] }
         }
     }
 })
 
-export const { addTask, editTask, removeTask, toggleTask } = taskSlice.actions;
+export const { addTask, editTask, removeTask, toggleTask, resetTasks, markXpAwarded } = taskSlice.actions;
 export default taskSlice.reducer;
