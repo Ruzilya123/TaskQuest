@@ -6,7 +6,7 @@ interface TasksState {
 }
 
 const initialState: TasksState = {
-    list: [],
+    list: JSON.parse(localStorage.getItem("tasks") || "[]"),
 };
 
 const taskSlice = createSlice({
@@ -32,9 +32,15 @@ const taskSlice = createSlice({
         },
         removeTask: (state, action: PayloadAction<{ id: string }>) => {
             state.list = state.list.filter(t => t.id !== action.payload.id);
+        },
+        toggleTask: (state, action: PayloadAction<{ id: string }>) => {
+            const task = state.list.find(t => t.id === action.payload.id);
+            if (task) {
+                task.completed = !task.completed;
+            }
         }
     }
 })
 
-export const { addTask, editTask, removeTask } = taskSlice.actions;
+export const { addTask, editTask, removeTask, toggleTask } = taskSlice.actions;
 export default taskSlice.reducer;

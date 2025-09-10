@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks.ts";
-import { editTask, removeTask } from "./tasksSlice.ts";
+import { editTask, removeTask, toggleTask } from "./tasksSlice.ts";
 import type { RootState } from "../../store.ts";
 
 export const TaskList = () => {
@@ -67,7 +67,7 @@ export const TaskList = () => {
                             </div>
                             <div className="flex gap-2">
                                 <button
-                                    onClick={() => console.log("Toggle Complete", task.id)}
+                                    onClick={() => dispatch(toggleTask({ id: task.id }))}
                                     className="px-3 py-1 bg-green-500 text-white rounded"
                                 >
                                     {task.completed ? "↩️" : "✔️"}
