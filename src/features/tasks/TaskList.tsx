@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks.ts";
-import { editTask } from "./tasksSlice.ts";
+import { editTask, removeTask } from "./tasksSlice.ts";
 import type { RootState } from "../../store.ts";
 
 export const TaskList = () => {
@@ -79,7 +79,7 @@ export const TaskList = () => {
                                     ✏️
                                 </button>
                                 <button
-                                    onClick={() => console.log("Delete", task.id)}
+                                    onClick={() => dispatch(removeTask({ id: task.id }))}
                                     className="px-3 py-1 bg-red-500 text-white rounded"
                                 >
                                     🗑️
