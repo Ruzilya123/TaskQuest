@@ -7,8 +7,13 @@ import { Layout } from "./components/Layout.tsx";
 import { PageTransition } from "./components/PageTransition.tsx";
 import { AchievementsList } from "./features/achievements/AchievementsList.tsx";
 import { StatsChart } from "./features/stats/StatsChart.tsx";
+import useSound from "use-sound";
+import music from './assets/musicBg.mp3';
 
 export default function App() {
+    const [play] = useSound(music, { volume: 0.3, loop: true })
+    play();
+
     return (
         <BrowserRouter>
             <Layout>
